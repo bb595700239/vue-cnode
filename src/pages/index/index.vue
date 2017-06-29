@@ -3,8 +3,8 @@
     <nav class="nav">
       <ul flex="box:mean">
 
-        <li v-for="item in tabs" :class="{ active: item.tab === ($route.query.tab || '') }">
-          <router-link :to="{ name: 'index', query: { tab: item.tab } }">{{ item.title }}</router-link>
+        <li v-for="item in tabs" :class="{ active: item.tab === list.tabactive }">
+          <a @click="list.tabactive=item.tab;list.data=[];$vuet.fetch('topic-list');">{{ item.title }}</a>
         </li>
       </ul>
     </nav>
@@ -85,7 +85,14 @@
           }
         ]
       }
+    },
+    mounted () {
+      console.log(this.list)
+    },
+    watch (){
+
     }
+
   }
 </script>
 <style lang="less" scoped>

@@ -44,7 +44,8 @@ export default new Vuet({
             data: [], // 列表存储的数据
             loading: true, // 数据正在加载中
             done: false, // 数据是否已经全部加载完成
-            page: 1 // 加载的页数
+            page: 1 ,// 加载的页数
+            tabactive: 'ask'//当前TAB
           }
         },
         async fetch ({ state, route, params, path }) {
@@ -55,7 +56,7 @@ export default new Vuet({
             return {}
           }
           // params.routeWatch 没有参数，则是上拉加载触发的调用
-          const { tab = '' } = route.query
+          const tab=state.tabactive
           const query = {
             tab,
             mdrender: false,
